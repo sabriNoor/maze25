@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maze Generator</title>
+  <style>
+    #maze {
+      display: grid;
+      gap: 2px;
+      margin-top: 10px;
+    }
+    .tile {
+      width: 30px;
+      height: 30px;
+      font-size: 10px;
+      text-align: center;
+      line-height: 15px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+    .tile.path {
+    background-color: yellow;
+}
+
+    .grass { background-color: #aaffaa; }
+    .water { background-color: #aaddff; }
+    .obstacle { background-color: #444; color: white; }
+    .start { background-color: yellow !important; }
+    .end { background-color: orange !important; }
+  </style>
+</head>
+<body>
+    <label for="fileInput">Choose Excel File:</label>
+<input type="file" id="fileInput" />
+
+
+  <label for="size">Maze Size:</label>
+  <input type="number" id="size" value="10" min="2">
+  <button id="generateBtn">Generate Maze</button>
+  <button id="solveBtn">Solve Maze</button>
+
+  <div id="maze"></div>
+
+  <!-- Link the external JavaScript file -->
+  <script type="module" src="maze.js">
+  
+  </script>
+ 
+
+  
+
+</body>
+</html>

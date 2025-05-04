@@ -1,0 +1,19 @@
+{
+  "name": "maze",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "Perceptron.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "xlsx": "^0.18.5"
+  }
+}
