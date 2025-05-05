@@ -1,52 +1,130 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.control-card {
+    background-color: #ffffffee;
+    display: inline-block;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.control-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-shadow: 1px 1px 2px #ccc;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    padding: 8px;
+    font-size: 1em;
+    width: 80px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right, #2196f3, #21cbf3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #1e88e5, #1de9b6);
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 .maze {
     display: grid;
-    margin-top: 20px;
+    margin-top: 30px;
     gap: 2px;
     justify-content: center;
 }
 
 .tile {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 12px;
     color: white;
     border-radius: 4px;
+    box-shadow: inset 0 0 2px #00000033;
+    line-height: 1.1;          
+    padding: 0;              
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Tile types colors */
 .grass {
-    background-color: green;
+    background-color: #2ecc71;
 }
 
 .water {
-    background-color: blue;
+    background-color: #3498db;
 }
 
 .obstacle {
-    background-color: rgba(61, 30, 30, 0.958);
+    background-color: #3c1e1e;
 }
 
 .start {
     background-color: gold !important;
     color: black;
     font-weight: bold;
+    box-shadow: 0 0 6px gold;
 }
 
 .end {
     background-color: crimson !important;
     color: white;
     font-weight: bold;
+    box-shadow: 0 0 6px crimson;
 }
 
 .tile.path {
-    background-color: pink;
+    background-color: #f78fb3;
 }

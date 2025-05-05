@@ -9,7 +9,7 @@ function generateMaze() {
     const size = parseInt(document.getElementById('size').value);
     const mazeContainer = document.getElementById('maze');
     mazeContainer.innerHTML = '';
-    mazeContainer.style.gridTemplateColumns = `repeat(${size}, 30px)`;
+    mazeContainer.style.gridTemplateColumns = `repeat(${size}, 40px)`;
 
     maze = [];
 
