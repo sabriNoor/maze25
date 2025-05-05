@@ -21,9 +21,11 @@ export const AStar=async(start, end, maze, size, perceptron)=> {
             if (e1 < e2) {
                 currentTile = openList[i];
             } else if (e1 == e2) {
+                console.log('Tie Breaker');
                 const f1 = fScore.get(getKey(openList[i]));
                 const f2 = fScore.get(getKey(currentTile));
                 currentTile = f1 < f2 ? openList[i] : currentTile;
+                console.log('Current Tile form tie breaker:', currentTile);
             }
         }
         // remove current tile from open list

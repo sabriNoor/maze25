@@ -83,7 +83,7 @@ export class Perceptron {
             const totalError=this.train(train_x, train_y); 
             if (totalError === 0) {
                 console.log(`Training complete at epoch ${i}`);
-                break;
+             //   break;
             }
             if (i % 10 === 0) { 
                 console.log(`Epoch ${i}: Weights: ${this.weights}, Threshold: ${this.threshold}`);

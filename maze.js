@@ -53,9 +53,15 @@ function generateMaze() {
 }
 
 function createTile(x, y) {
-    const types = ['grass', 'water', 'obstacle'];
-    const type = types[Math.floor(Math.random() * types.length)];
-    const elevation = Math.floor(Math.random() * 11);
+    const weightedTypes = [
+        ...Array(65).fill('grass'),
+        ...Array(25).fill('water'),
+        ...Array(10).fill('obstacle')
+      ];
+      
+    const type = weightedTypes[Math.floor(Math.random() * weightedTypes.length)];
+    const elevation = Math.floor(Math.random() * 10)+1;
+    
     return {
         x,
         y,
