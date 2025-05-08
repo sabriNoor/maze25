@@ -32,7 +32,7 @@ app.post('/solve-maze',async (req, res) => {
     const path =await AStar(startTile, endTile, mazeData, size, perceptron);
 
     if (path) {
-        res.json({ success: true, path });
+        res.json({ success: path.length > 0? true: false, path });
     } else {
         res.status(400).json({ success: false, message: 'No path found.' });
     }

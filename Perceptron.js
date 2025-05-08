@@ -47,6 +47,8 @@ export class Perceptron {
     train(inputs, desiredOutputs) {
         const errors = new Array(desiredOutputs.length).fill(0);
         for(let i = 0; i < inputs.length; i++) {
+            inputs[i][1]/=10;
+            inputs[i][2]/=10;
             const actualOutput = this.activationFunction(this.sum(inputs[i]));
             const expectedOutput = desiredOutputs[i];
             const error = expectedOutput - actualOutput;
@@ -67,6 +69,8 @@ export class Perceptron {
     test(inputs) {
         let outputs = new Array(inputs.length).fill(0);
         for(let i = 0; i < inputs.length; i++) {
+            inputs[i][1]/=10;
+            inputs[i][2]/=10;
             const output = this.activationFunction(this.sum(inputs[i]));
             outputs[i] = output;
         }
@@ -90,7 +94,9 @@ export class Perceptron {
             }
         }
     }
-    predict(input) {
+    predict(input, size) {
+        input[1]/=size;
+        input[2]/=size;
         const output = this.activationFunction(this.sum(input));
         return output;
     }

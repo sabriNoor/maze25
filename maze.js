@@ -8,6 +8,8 @@ document.getElementById('generateBtn').addEventListener('click', generateMaze);
 function generateMaze() {
     const size = parseInt(document.getElementById('size').value);
     const mazeContainer = document.getElementById('maze');
+     const resultDiv = document.getElementById('result');
+     resultDiv.textContent = "";
     mazeContainer.innerHTML = '';
     mazeContainer.style.gridTemplateColumns = `repeat(${size}, 40px)`;
 
@@ -108,6 +110,8 @@ const solveMaze = async () => {
     console.log('Start Tile:', startTile);
     console.log('End Tile:', endTile);
     console.log('Maze with distances:', maze);
+    const resultDiv = document.getElementById('result');
+     resultDiv.textContent = "";
 
     // Send maze data to backend to solve the maze
     try {
@@ -138,6 +142,8 @@ const solveMaze = async () => {
             });
         } else {
             console.log("No path found.");
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = "No path found.";
         }
     } catch (error) {
         console.error("Error solving maze:", error);

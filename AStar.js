@@ -58,7 +58,7 @@ export const AStar=async(start, end, maze, size, perceptron)=> {
             if (!(neighbor.x === end.x && neighbor.y === end.y)) {
                 const inputs = [neighbor.type === 'grass' ? 0 : 1, neighbor.elevation, neighbor.distanceToObstacle];
                 console.log('Inputs:', inputs);
-                const prediction = perceptron.predict(inputs);
+                const prediction = perceptron.predict(inputs,size);
                 console.log('Prediction:', prediction);
             
                 // if unsafe and not the end tile, skip
