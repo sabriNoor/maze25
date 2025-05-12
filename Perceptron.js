@@ -87,16 +87,16 @@ export class Perceptron {
             const totalError=this.train(train_x, train_y); 
             if (totalError === 0) {
                 console.log(`Training complete at epoch ${i}`);
-             //   break;
+                break;
             }
             if (i % 10 === 0) { 
                 console.log(`Epoch ${i}: Weights: ${this.weights}, Threshold: ${this.threshold}`);
             }
         }
     }
-    predict(input, size) {
-        input[1]/=size;
-        input[2]/=size;
+    predict(input, maxDistance) {
+        input[1]/=10;
+        input[2]/=maxDistance;
         const output = this.activationFunction(this.sum(input));
         return output;
     }

@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Endpoint to solve the maze
 app.post('/solve-maze',async (req, res) => {
-    const { mazeData, startTile, endTile, size } = req.body;
+    const { mazeData, startTile, endTile, size , maxDistance} = req.body;
     // Prepare data for Perceptron and A* algorithm
     const { train_x, train_y, test_x, test_y } = splitData();
 
@@ -29,7 +29,7 @@ app.post('/solve-maze',async (req, res) => {
     console.log('Predictions:', isCorrectPrediction);
 
     // Solve the maze using A*
-    const path =await AStar(startTile, endTile, mazeData, size, perceptron);
+    const path =await AStar(startTile, endTile, mazeData, size, perceptron,maxDistance);
 
     if (path) {
         res.json({ success: path.length > 0? true: false, path });

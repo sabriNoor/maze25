@@ -2,6 +2,7 @@
 let maze = [];
 let startTile = null;
 let endTile = null;
+let maxDistance = -1;
 
 document.getElementById('generateBtn').addEventListener('click', generateMaze);
 
@@ -103,6 +104,7 @@ function findNearestObstacleDistance(x, y, size) {
             }
         }
     }
+    if(minDistance > maxDistance) maxDistance = minDistance;
     return minDistance === Infinity ? -1 : minDistance;
 }
 
@@ -124,7 +126,8 @@ const solveMaze = async () => {
                 mazeData: maze,
                 startTile,
                 endTile,
-                size: maze.length
+                size: maze.length,
+                maxDistance: maxDistance
             }),
         });
 
