@@ -7,6 +7,9 @@ let maxDistance = -1;
 document.getElementById('generateBtn').addEventListener('click', generateMaze);
 
 function generateMaze() {
+    startTile = null;
+    endTile   = null;
+    maxDistance = -1;
     const size = parseInt(document.getElementById('size').value);
     const mazeContainer = document.getElementById('maze');
      const resultDiv = document.getElementById('result');
@@ -25,13 +28,6 @@ function generateMaze() {
         maze.push(row);
     }
 
-    startTile = getRandomNonObstacleTile(size);
-    endTile = getRandomNonObstacleTile(size);
-
-    while (startTile.x === endTile.x && startTile.y === endTile.y) {
-        endTile = getRandomNonObstacleTile(size);
-    }
-
     computeAllObstacleDistances(size);
 
     for (let i = 0; i < size; i++) {
@@ -39,16 +35,40 @@ function generateMaze() {
             const tile = maze[i][j];
             const tileDiv = document.createElement('div');
             tileDiv.className = `tile ${tile.type}`;
+            tileDiv.innerHTML = `${tile.elevation}<br>h=${tile.distanceToObstacle}`;
 
-            if (tile.x === startTile.x && tile.y === startTile.y) {
-                tileDiv.classList.add('start');
-                tileDiv.innerHTML = "S";
-            } else if (tile.x === endTile.x && tile.y === endTile.y) {
-                tileDiv.classList.add('end');
-                tileDiv.innerHTML = "E";
-            } else {
-                tileDiv.innerHTML = `${tile.elevation}<br>h=${tile.distanceToObstacle}`;
-            }
+             tileDiv.dataset.x = i;
+             tileDiv.dataset.y = j;
+                // allow user to click to set start/end
+                tileDiv.addEventListener('click', () => {
+                    if (tile.type === 'obstacle') return;
+
+                    document.querySelectorAll('.path, .tested').forEach(d => {
+                    d.classList.remove('path', 'tested');
+                     });
+
+                    if (!startTile) {
+                        startTile = tile;
+                        tileDiv.classList.add('start');
+                        tileDiv.textContent = 'S';
+                    }
+                    else if (!endTile && (tile.x !== startTile.x || tile.y !== startTile.y)) {
+                        endTile = tile;
+                        tileDiv.classList.add('end');
+                        tileDiv.textContent = 'E';
+                    }
+                    else if (startTile && endTile) {
+                        document.querySelectorAll('.start, .end').forEach(d => {
+                            d.classList.remove('start','end');
+                            const t = maze[+d.dataset.x][+d.dataset.y];
+                            d.innerHTML = `${t.elevation}<br>h=${t.distanceToObstacle}`;
+                        });
+                        startTile = tile;
+                        endTile = null;
+                        tileDiv.classList.add('start');
+                        tileDiv.textContent = 'S';
+                    }
+                });
 
             mazeContainer.appendChild(tileDiv);
         }
