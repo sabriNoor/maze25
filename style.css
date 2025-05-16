@@ -18,13 +18,42 @@ body {
 
 .control-card {
     background-color: #ffffffee;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 20px 30px;
+    flex-wrap: wrap;
+    gap: 10px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     margin-bottom: 10px;
     transition: box-shadow 0.3s ease;
 }
+
+    .control-card label {
+    font-weight: 500;
+    margin-right: 4px;
+    }
+
+    .control-card input,
+    .control-card select {
+        padding: 6px 10px;
+        font-size: 14px;
+        width: 80px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    .control-card button {
+        padding: 8px 14px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #19a2f8;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
 
 .control-card:hover {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
@@ -97,6 +126,11 @@ button:active {
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .grass {

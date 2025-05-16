@@ -13,6 +13,14 @@
 <div class="control-card">
     <label for="size">Maze Size:</label>
     <input type="number" id="size" value="10" min="5" max="50">
+
+    <label for="tileType">Select Tile Type: </label>
+    <select id="tileType">
+        <option value="grass">Grass</option>
+        <option value="water">Water</option>
+        <option value="obstacle">Obstacle</option>
+    </select>
+    
     <button id="generateBtn">Generate Maze</button>
     <button id="solveBtn">Solve Maze</button>
     <div id="result" class="result"></div>

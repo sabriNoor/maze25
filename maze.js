@@ -39,8 +39,27 @@ function generateMaze() {
 
              tileDiv.dataset.x = i;
              tileDiv.dataset.y = j;
-                // allow user to click to set start/end
-                tileDiv.addEventListener('click', () => {
+                tileDiv.addEventListener('click', (e) => {
+                     if (e.shiftKey) {
+                    const selectedType = document.getElementById('tileType').value;
+                    tile.type = selectedType;
+
+                    tileDiv.className = `tile ${selectedType}`;
+                    tileDiv.classList.remove('start', 'end', 'path', 'tested');
+                    tileDiv.innerHTML = `${tile.elevation}<br>h=${tile.distanceToObstacle}`;
+
+                    computeAllObstacleDistances(size);
+
+                    document.querySelectorAll('.tile').forEach(div => {
+                        const t = maze[+div.dataset.x][+div.dataset.y];
+                        if (!div.classList.contains('start') && !div.classList.contains('end')) {
+                            div.innerHTML = `${t.elevation}<br>h=${t.distanceToObstacle}`;
+                        }
+                    });
+
+                    return;
+                }
+
                     if (tile.type === 'obstacle') return;
 
                     document.querySelectorAll('.path, .tested').forEach(d => {
@@ -92,16 +111,6 @@ function createTile(x, y) {
         elevation,
         distanceToObstacle: null
     };
-}
-
-function getRandomNonObstacleTile(size) {
-    let tile;
-    do {
-        const x = Math.floor(Math.random() * size);
-        const y = Math.floor(Math.random() * size);
-        tile = maze[x][y];
-    } while (tile.type === 'obstacle');
-    return tile;
 }
 
 function computeAllObstacleDistances(size) {
