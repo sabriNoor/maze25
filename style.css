@@ -129,6 +129,10 @@ button:active {
     background-color: #f78fb3;
 }
 
+.tested {
+    background-color: rgb(215, 223, 62);
+}
+
 .result{
     margin-top: 30px;
     font-size: 1.2em;

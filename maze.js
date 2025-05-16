@@ -136,12 +136,25 @@ const solveMaze = async () => {
         console.log(data);
 
         if (data.success) {
-            const path = data.path;
+            const { path, testedTiles } = data;
             const mazeContainer = document.getElementById('maze');
+            // color all tested tiles
+            testedTiles.forEach(tile => {
+                const index = tile.x * maze.length + tile.y;
+                const div = mazeContainer.children[index];
+                if (!div.classList.contains('start') && !div.classList.contains('end')) {
+                    div.classList.add('tested'); 
+                }
+            });
+
+            // color the final solution path
             path.forEach(tile => {
                 const index = tile.x * maze.length + tile.y;
                 const div = mazeContainer.children[index];
-                div.classList.add('path');
+                if (!div.classList.contains('start') && !div.classList.contains('end')) {
+                    div.classList.remove('tested'); 
+                    div.classList.add('path');
+                }
             });
         } else {
             console.log("No path found.");

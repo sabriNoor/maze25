@@ -29,10 +29,14 @@ app.post('/solve-maze',async (req, res) => {
     console.log('Predictions:', isCorrectPrediction);
 
     // Solve the maze using A*
-    const path =await AStar(startTile, endTile, mazeData, size, perceptron,maxDistance);
+    const result =await AStar(startTile, endTile, mazeData, size, perceptron);
 
-    if (path) {
-        res.json({ success: path.length > 0? true: false, path });
+    if (result && result.path) {
+        res.json({ 
+            success: result.path.length > 0,
+            path: result.path,
+            testedTiles: result.testedTiles
+        });
     } else {
         res.status(400).json({ success: false, message: 'No path found.' });
     }

@@ -45,7 +45,10 @@ export const AStar=async(start, end, maze, size, perceptron, maxDistance)=> {
             path.push(start);
             // reverse path
             path.reverse();
-            return path;
+            return { path, testedTiles: Array.from(closedList).map(key => {
+            const [x, y] = key.split(',').map(Number);
+            return maze[x][y];
+        }) };
         }
         // get neighbors
         const neighbors = getNighbors(currentTile.x, currentTile.y, size, maze);
