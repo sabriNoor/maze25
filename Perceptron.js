@@ -44,11 +44,11 @@ export class Perceptron {
         }
     }
     
-    train(inputs, desiredOutputs) {
+    train(inputs, desiredOutputs, maxDistance) {
         const errors = new Array(desiredOutputs.length).fill(0);
         for(let i = 0; i < inputs.length; i++) {
             inputs[i][1]/=10;
-            inputs[i][2]/=10;
+            inputs[i][2]/=maxDistance;
             const actualOutput = this.activationFunction(this.sum(inputs[i]));
             const expectedOutput = desiredOutputs[i];
             const error = expectedOutput - actualOutput;
@@ -82,9 +82,9 @@ export class Perceptron {
         return stop;
     }
     
-    trainMultipleEpochs(train_x, train_y) {
+    trainMultipleEpochs(train_x, train_y, maxDistance) {
         for (let i = 0; i < this.epochs; i++) {
-            const totalError=this.train(train_x, train_y); 
+            const totalError=this.train(train_x, train_y, maxDistance); 
             if (totalError === 0) {
                 console.log(`Training complete at epoch ${i}`);
                 break;

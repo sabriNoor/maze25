@@ -19,7 +19,7 @@ app.post('/solve-maze',async (req, res) => {
 
     // Train Perceptron
     const perceptron = new Perceptron('step', 0.1, 1000);
-    perceptron.trainMultipleEpochs(train_x, train_y);
+    perceptron.trainMultipleEpochs(train_x, train_y, maxDistance);
     const predictions = perceptron.test(test_x);
 
     let isCorrectPrediction = predictions.map((pred, i) => {
@@ -29,7 +29,7 @@ app.post('/solve-maze',async (req, res) => {
     console.log('Predictions:', isCorrectPrediction);
 
     // Solve the maze using A*
-    const result =await AStar(startTile, endTile, mazeData, size, perceptron);
+    const result =await AStar(startTile, endTile, mazeData, size, perceptron, maxDistance);
 
     if (result && result.path) {
         res.json({ 
